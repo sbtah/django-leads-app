@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Leads{% endblock title %}
+{% block content %}
+<h2>All Leads:</h2>
+{% for lead in leads %}
+<div class="lead">
+    <a href="{% url 'leads:lead-detail' lead.pk %}">{{ lead.first_name }} {{ lead.last_name }} ; Age: {{ lead.age }}</a>
+    <p>Agent:</p> 
+    <a href="#">{{ lead.agent.user.email }}</a>
+</div>
+{% endfor %}
+{% endblock content %}
