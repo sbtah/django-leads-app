@@ -5,11 +5,11 @@
 <div class="container mt-3">
     <h2 class="text-center">Lead Update:</h2>
 </div>
-<div class="container-sm mt-3 text-center shadow p-4 mb-5 rounded">
+<div class="container-sm mt-3 shadow p-4 mb-5 rounded">
     <form action="" method="POST">
         {% csrf_token %}
         {{ form.as_p }}
-        <button class="btn btn-info" type="submit">Submit</button>
+        <button class="btn btn-info" type="submit">Update</button>
     </form>
 </div>
 {% endblock content %}

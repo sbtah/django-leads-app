@@ -16,6 +16,14 @@
               <li><a class="dropdown-item" href="{% url 'leads:lead-list' %}">Leads</a></li>
               <li><a class="dropdown-item" href="{% url 'leads:lead-create' %}">Create Lead</a></li>
             </ul>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Agents
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="{% url 'agents:agent-list' %}">Agents</a></li>
+                <li><a class="dropdown-item" href="#">Create Agent</a></li>
+              </ul>
           </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -25,7 +33,7 @@
                 <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
               </ul>
             </li>
-          {% else %}
+           {% else %}
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Sign in
@@ -37,11 +45,13 @@
             </li>
           {% endif %}
         </ul>
-        <form class="d-flex" method="POST" action="">
-          {% csrf_token %}
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="searched">
-          <button class="btn btn-outline-secondary" type="submit">Search</button>
-        </form>
+        {% if request.user.is_authenticated %}
+          <form class="d-flex" method="POST" action="">
+            {% csrf_token %}
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="searched">
+            <button class="btn btn-outline-secondary" type="submit">Search</button>
+          </form>
+        {% endif %}
       </div>
     </div>
   </nav>

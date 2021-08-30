@@ -8,8 +8,12 @@
     <div class="col-lg-6 mx-auto">
       <p class="fs-5 mb-4">Welcome to simpleCRM. Let us manage your hard tasks daily.</p>
       <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-        <button type="button" class="btn btn-outline-info btn-lg px-4 me-sm-3 fw-bold">Login</button>
-        <button type="button" class="btn btn-outline-light btn-lg px-4">Register</button>
+        {% if request.user.is_authenticated %}
+        <h1 class="text-white">Hello {{ request.user.username }}</h1>
+        {% else %}
+        <a href="{% url 'login' %}" class="btn btn-outline-info btn-lg px-4 me-sm-3 fw-bold">Login</a>
+        <a href="{% url 'register' %}" class="btn btn-outline-light btn-lg px-4">Register</a>
+        {% endif %}
       </div>
     </div>
   </div>

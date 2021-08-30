@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Agents{% endblock title %}
+{% block content %}
+<div class="container mt-3">
+  <h2 class="text-center">Agents:</h2>
+</div>
+{% for agent in agents %}
+<div class="container shadow mt-3 p-2 rounded">
+  <div class="card mt-1">
+    <div class="card-header pt-4">
+      <p>{{ agent }}</p>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">{{ agent}}</h5>
+      <a href="#" class="btn btn-info mt-3">Details</a>
+    </div>
+  </div>
+</div>
+{% endfor %}
+{% endblock content %}
