@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Create Agent{% endblock title %}
+{% block content %}
+<div class="container mt-3">
+    <h2 class="text-center">Create Agent:</h2>
+</div>
+<div class="container-sm mt-3 text-center mt-5 shadow mt-3 p-4 mb-5 rounded">
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-info" type="submit">Create</button>
+    </form>
+</div>
+{% endblock content %}  

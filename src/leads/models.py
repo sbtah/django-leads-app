@@ -8,7 +8,7 @@ class User(AbstractUser):
     pass
 
 
-class OrganizationProfile(models.Model):
+class OrganisationProfile(models.Model):
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
@@ -32,7 +32,7 @@ class Agent(models.Model):
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     organisation = models.ForeignKey(
-        OrganizationProfile, on_delete=models.CASCADE)
+        OrganisationProfile, on_delete=models.CASCADE)
 
     def __str__(self):
         return f'Agent: {self.user.username} ; {self.user.email}'
@@ -41,7 +41,7 @@ class Agent(models.Model):
 def post_user_created_signal(sender, instance, created, **kwargs):
     print(instance, created)
     if created:
-        OrganizationProfile.objects.create(user=instance)
+        OrganisationProfile.objects.create(user=instance)
 
 
 post_save.connect(post_user_created_signal, sender=User)
