@@ -2,12 +2,20 @@
 {% load static %}
 {% block title %}Leads{% endblock title %}
 {% block content %}
-<h2>All Leads:</h2>
+<div class="container mt-3">
+  <h2 class="text-center">Leads:</h2>
+</div>
 {% for lead in leads %}
-<div class="lead">
-    <a href="{% url 'leads:lead-detail' lead.pk %}">{{ lead.first_name }} {{ lead.last_name }} ; Age: {{ lead.age }}</a>
-    <p>Agent:</p> 
-    <a href="#">{{ lead.agent.user.email }}</a>
+<div class="container shadow mt-3 p-2 rounded">
+  <div class="card mt-1">
+    <div class="card-header pt-4">
+      <p>{{ lead }}</p>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">{{ lead }}</h5>
+      <a href="{% url 'leads:lead-detail' lead.pk %}" class="btn btn-info mt-3">Details</a>
+    </div>
+  </div>
 </div>
 {% endfor %}
 {% endblock content %}

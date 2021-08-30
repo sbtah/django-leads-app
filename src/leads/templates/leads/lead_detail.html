@@ -2,12 +2,23 @@
 {% load static %}
 {% block title %}{{ lead }}{% endblock title %}
 {% block content %}
-<a href="{% url 'leads:lead-list' %}">Go back to Leads</a>
-<hr>
-<div class="lead">
-    <p>{{ lead.first_name }} {{ lead.last_name }}. Age: {{ lead.age }} FOR: {{ lead.agent.user }}</p>
-    <a href="{% url 'leads:lead-update' lead.pk %}">Update</a>
-    <a href="{% url 'leads:lead-delete' lead.pk %}">Delete</a>
+<div class="container mt-3 ">
+    <h2 class="text-center">Lead Detail:</h2>
 </div>
-
+<div class="container shadow mt-3 p-3 rounded">
+    <div class="card mt-1">
+        <div class="card-header">
+        {{ lead }}
+        </div>
+        <div class="card-body">
+        <h5 class="card-title">{{ lead.name }}</h5>
+        <p class="card-text">First Name: {{ lead.first_name }}</p>
+        <p class="card-text">Last Name: {{ lead.last_name }}</p>
+        <p class="card-text">Age: {{ lead.age }}</p>
+        <p class="card-text">{{ lead.agent }}</p>
+        <a href="{% url 'leads:lead-update' lead.pk %}" class="btn btn-info">Update</a>
+        <a href="{% url 'leads:lead-delete' lead.pk %}" class="btn btn-danger">Delete</a>
+        </div>
+    </div>
+</div>
 {% endblock content %}

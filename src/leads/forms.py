@@ -1,25 +1,49 @@
 from django import forms
 from django.forms import ModelForm
 from .models import Lead
+from django.contrib.auth.forms import UserCreationForm, UsernameField
+from django.contrib.auth import get_user_model
 
 
-class LeadModelForm(ModelForm):
+User = get_user_model()
+
+
+class LeadForm(ModelForm):
+
     class Meta:
 
         model = Lead
 
-        fields = ('first_name', 'last_name', 'age', 'agent')
+        fields = ('__all__')
 
-        # widgets = {
-        #     'first_name': forms.TextInput(),
-        #     'last_name': forms.TextInput(),
-        #     'age': forms.IntegerField(min_value=0),
-        #     'agent': forms.Select(),
-        # }
+        widgets = {
+            'first_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'last_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'age': forms.NumberInput(attrs={'class': 'form-control'}),
+            'agent': forms.Select(attrs={'class': 'form-control'}),
+        }
+
+        labels = {
+            'first_name': 'First Name',
+            'last_name': 'Last Name',
+            'age': 'Age',
+            'agent': 'Agent',
+        }
 
 
-# class LeadForm(forms.Form):
+class CustomUserCreationForm(UserCreationForm):
 
-#     first_name = forms.CharField()
-#     last_name = forms.CharField()
-#     age = forms.IntegerField(min_value=0)
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['password1'].widget.attrs.update(
+            {'class': 'form-control'})
+        self.fields['password2'].widget.attrs.update(
+            {'class': 'form-control'})
+        self.fields['username'].widget.attrs.update(
+            {'class': 'form-control'})
+
+    class Meta:
+
+        model = User
+        fields = ('username', 'password1', 'password2',)
+        field_classes = {'username': UsernameField}
